@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/scleroderma-nutrition/"
+title = "Scleroderma Nutrition Support"
+version = "1.0.0"
+id = "artifacts/scleroderma-nutrition"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/scleroderma-nutrition/" ]
+localPort = 22512
+
+[services.development]
+run = "pnpm --filter @workspace/scleroderma-nutrition run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/scleroderma-nutrition", "run", "build" ]
+publicDir = "artifacts/scleroderma-nutrition/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22512"
+BASE_PATH = "/scleroderma-nutrition/"
